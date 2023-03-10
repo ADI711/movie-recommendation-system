@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer 
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -10,7 +9,6 @@ def get_index_from_title(title):
     return df[df.title == title]['index'].values[0]
 
 df = pd.read_csv("movies.csv")
-# print(df.columns)
 
 features = ['genres','overview','production_companies','cast','crew','director']
 for feature in features:
@@ -32,10 +30,8 @@ fav_movie = "Inception"
 fav_movie_index = get_index_from_title(fav_movie)
 
 similar_movies = list(enumerate(sim[fav_movie_index]))
-# print (similar_movies)
 
 sorted_movies = sorted(similar_movies, key = lambda x:x[1], reverse = True)
-# print (sorted_movies)
 
 i = 0
 for movie in sorted_movies:
